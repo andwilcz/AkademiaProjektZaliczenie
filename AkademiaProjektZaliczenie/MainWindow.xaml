@@ -5,8 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AkademiaProjektZaliczenie"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="Asystent podróży" Height="540" Width="720" ResizeMode="CanMinimize">
+    <Grid Background="LightSteelBlue">
+        <StackPanel HorizontalAlignment="Left" Height="255" VerticalAlignment="Top" Width="355">
+            <Grid Background="LightSteelBlue" Height="255">
+                <Button x:Name="search" Content="Szukaj" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Margin="20,40" Width="90" Height="25" Click="search_Click" />
+                <Label x:Name="placeelabel" Content="Wybierz opcję:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="pricelabel" Content="Cena do:" HorizontalAlignment="Left" Margin="170,10,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="dayslabel" Content="Ilość dni:" HorizontalAlignment="Left" Margin="170,69,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="daysnumber" HorizontalAlignment="Left" Height="23" Margin="170, 100,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="50"/>
+                <ComboBox x:Name="Options" HorizontalAlignment="Left" Margin="10,36" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="Sun"/>
+                    <ComboBoxItem Content="Adventure"/>
+                    <ComboBoxItem Content="Adrenaline"/>
+                    <ComboBoxItem Content="Snow"/>
+                    <ComboBoxItem Content="Lazy"/>
+                    <ComboBoxItem Content="Survival"/>
+                </ComboBox>
+                <ComboBox x:Name="priceoptions" HorizontalAlignment="Left" Margin="170,36,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="500"/>
+                    <ComboBoxItem Content="1000"/>
+                    <ComboBoxItem Content="2000"/>
+                    <ComboBoxItem Content="5000"/>
+                    <ComboBoxItem Content="10000"/>
+                    <ComboBoxItem Content="15000"/>
+                </ComboBox>
+            </Grid>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Height="255" VerticalAlignment="Top" Width="355">
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Miejsce na Twoją reklamę" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,100" FontSize="17"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="255" VerticalAlignment="Bottom" Width="720" >
+           
+            <ListView Name="ListView" Grid.Row="1" Grid.ColumnSpan="4">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Miejsce" DisplayMemberBinding="{Binding Place}" Width="150"/>
+                        <GridViewColumn Header="Opcja" DisplayMemberBinding="{Binding SelectedOption}" Width="100"/>
+                        <GridViewColumn Header="Cena (zł)" DisplayMemberBinding="{Binding FinalPrice}" Width="100"/>
+                        <GridViewColumn Header="Przykładowe rozrywki" DisplayMemberBinding="{Binding Entertainment}" Width="200"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </StackPanel>
     </Grid>
 </Window>
