@@ -1,5 +1,5 @@
 Aplikacja to wyszukiwarka najbardziej pasuj¹cego miejsca na wakacje zgodnie z preferencjami.
-Urzytkownik wpisuje co chcia³by robiæ na wakacjach(czego oczekuje od miejsca pobytu np. S³oñca, Przugody, Adrenaliny itp...), 
-wybiera jak¹ maskymaln¹kwotê chcia³by wydaæ na wakacje i podaje ile dni chcia³by spêdziæ na wakacjach. Po klikniêciu wyszukaj
-wyniki pojawiaj¹ siê w polu poni¿ej wyœwietlaj¹c miejsce, rodzaj rozwyki, cenê  oraz przyk³adowe atrakcje. Docelowo po klikniêciu
-mia³o byæ zapisywanie do pliku ale nie zd¹rzy³em tego zrobiæ wiêc jest niedokoñczone.
+U¿ytkownik wpisuje co chcia³by robiæ na wakacjach(czego oczekuje od miejsca pobytu np. S³oñca, Przygody, Adrenaliny itp...), 
+wybiera jak¹ maksymaln¹ kwotê chcia³by wydaæ na wakacje i podaje ile dni chcia³by spêdziæ na wakacjach. Po klikniêciu wyszukaj
+wyniki pojawiaj¹ siê w polu poni¿ej wyœwietlaj¹c miejsce, rodzaj rozrywki, cenê  oraz przyk³adowe atrakcje. Docelowo po klikniêciu
+mia³o byæ zapisywanie do pliku ale nie zd¹¿y³em tego zrobiæ wiêc jest niedokoñczone.
