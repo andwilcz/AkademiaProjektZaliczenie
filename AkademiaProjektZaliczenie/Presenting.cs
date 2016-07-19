@@ -17,7 +17,7 @@ namespace AkademiaProjektZaliczenie
             {
                 try
                 {
-                    //foreach (string s uzupelniclistezopcjami )
+                    //foreach (string s in uzupelniclistezopcjami )
                     //{
                     //    writer.WriteLine(s);
                     //}

@@ -35,7 +35,7 @@
         <StackPanel HorizontalAlignment="Right" Height="255" VerticalAlignment="Top" Width="355">
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Miejsce na Twoją reklamę" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,100" FontSize="17"/>
         </StackPanel>
-        <StackPanel HorizontalAlignment="Left" Height="255" VerticalAlignment="Bottom" Width="720" >
+        <StackPanel x:Name="results" HorizontalAlignment="Left" Height="255" VerticalAlignment="Bottom" Width="720" >
            
             <ListView Name="ListView" Grid.Row="1" Grid.ColumnSpan="4">
                 <ListView.View>

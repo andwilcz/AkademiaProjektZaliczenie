@@ -26,44 +26,53 @@ namespace AkademiaProjektZaliczenie
         public string Option;
         public int Price;
         public int Days;
+        enum OptionOfTrip
+        {
+            Sun,
+            Adventure,
+            Adrenaline,
+            Snow,
+            Lazy,
+            Survival
+        };
 
-        Place Place = new Place();
-        Italy Italy = new Italy();
-        Spain Spain = new Spain();
-        Mexico Mexico = new Mexico();
-        Maldives Maldives = new Maldives();
-        Hawaii Hawaii = new Hawaii();
-        Australia Australia = new Australia();
-        France France = new France();
-        Tanzania Tanzania = new Tanzania();
-        Tonga Tonga = new Tonga();
-        Vietnam Vietnam = new Vietnam();
-        Madagascar Madagascar = new Madagascar();
-        Austria Austria = new Austria();
-        India India = new India();
-        Mongolia Mongolia = new Mongolia();
-        Indonesia Indonesia = new Indonesia();
-        Nepal Nepal = new Nepal();
-        Somalia Somalia = new Somalia();
-        Chile Chile = new Chile();
-        Italy_ValDiSole Italy_ValDiSole = new Italy_ValDiSole();
-        Switzerland Switzerland = new Switzerland();
-        Chile_Andy Chile_Andy = new Chile_Andy();
-        Antarctica Antarctica = new Antarctica();
-        Nepal_Mountains Nepal_Mountains = new Nepal_Mountains();
-        Kilimanjaro Kilimanjaro = new Kilimanjaro();
-        Croatia Croatia = new Croatia();
-        Morocco Morocco = new Morocco();
-        Portugal_Madera Portugal_Madera = new Portugal_Madera();
-        Dominican_Republic Dominican_Republic = new Dominican_Republic();
-        Cuba Cuba = new Cuba();
-        Zanzibar Zanzibar = new Zanzibar();
-        Knyszyn_Forest Knyszyn_Forest = new Knyszyn_Forest();
-        Tazi_Island Tazi_Island = new Tazi_Island();
-        Gambolo_Island Gambolo_Island = new Gambolo_Island();
-        Amparo_Island Amparo_Island = new Amparo_Island();
-        Devils_Island Devils_Island = new Devils_Island();
-        Caribbean_Survival Caribbean_Survival = new Caribbean_Survival();
+        Place Place = new Place(0);
+        Place Italy = new Place(300);
+        Place Spain = new Place(450);
+        Place Mexico = new Place(1200);
+        Place Maldives = new Place(2500);
+        Place Hawaii = new Place(1100);
+        Place Australia = new Place(1000);
+        Place France = new Place(974);
+        Place Tanzania = new Place(1050);
+        Place Tonga = new Place(3870);
+        Place Vietnam = new Place(1100);
+        Place Madagascar = new Place(6957);
+        Place Austria = new Place(740);
+        Place India = new Place(880);
+        Place Mongolia = new Place(1137);
+        Place Indonesia = new Place(1050);
+        Place Nepal = new Place(13640);
+        Place Somalia = new Place(1200);
+        Place Chile = new Place(2000);
+        Place Italy_ValDiSole = new Place(500);
+        Place Switzerland = new Place(1275);
+        Place Chile_Andy = new Place(1000);
+        Place Antarctica = new Place(7090);
+        Place Nepal_Mountains = new Place(12886);
+        Place Kilimanjaro = new Place(2010);
+        Place Croatia = new Place(150);
+        Place Morocco = new Place(357);
+        Place Portugal_Madera = new Place(270);
+        Place Dominican_Republic = new Place(571);
+        Place Cuba = new Place(660);
+        Place Zanzibar = new Place(3625);
+        Place Knyszyn_Forest = new Place(170);
+        Place Tazi_Island = new Place(6400);
+        Place Gambolo_Island = new Place(3324);
+        Place Amparo_Island = new Place(560);
+        Place Devils_Island = new Place(1520);
+        Place Caribbean_Survival = new Place(1040);
 
         ResultValues OptionResult = new ResultValues();
 
@@ -74,8 +83,11 @@ namespace AkademiaProjektZaliczenie
             this.ListView.ItemsSource = listofoptions;
         }
 
+        
         private void search_Click(object sender, RoutedEventArgs e)
         {
+           
+            listofoptions.Clear();
 
             Option = this.Options.Text;
             Price = int.Parse(this.priceoptions.Text);
@@ -83,169 +95,162 @@ namespace AkademiaProjektZaliczenie
 
             pricePerDay = Price / Days;
 
+            OptionOfTrip value = OptionOfTrip.Sun;
+
+            if (Option == "Sun")
+                value = OptionOfTrip.Sun;
+            else if (Option == "Adventure")
+                value = OptionOfTrip.Adventure;
+            else if (Option == "Adrenaline")
+                value = OptionOfTrip.Adrenaline;
+            else if (Option == "Snow")
+                value = OptionOfTrip.Snow;
+            else if (Option == "Lazy")
+                value = OptionOfTrip.Lazy;
+            else if (Option == "Survival")
+                value = OptionOfTrip.Survival;
 
             if (pricePerDay <= 500)
             {
-                switch (Option)
+                switch (value)
                 {
-                    case "Sun":
-                        
-                            ItalyExecutive();
-                            
-                        
+                    case OptionOfTrip.Sun:
+                        ItalyExecutive();
                         break;
-                    case "Adventure":
+                    case OptionOfTrip.Adventure:
                         SpainExecutive();
-                        ;
                         break;
-                    case "Adrenaline":
-                        ;
+                    case OptionOfTrip.Adrenaline:
+                        Default();
                         break;
-                    case "Snow": Italy_ValDiSoleExecutive();
-                        ;
+                    case OptionOfTrip.Snow:
+                        Italy_ValDiSoleExecutive();
                         break;
-                    case "Lazy":  CroatiaExecutive();
-                            MoroccoExecutive();
-                            Portugal_MaderaExecutive();
-                     
-                        
+                    case OptionOfTrip.Lazy: 
+                        Portugal_MaderaExecutive();
                         break;
-                    case "Survival": Knyszyn_ForestExecutive();
-                        Tazi_IslandExecutive();
-                        Gambolo_IslandExecutive();        
+                    case OptionOfTrip.Survival:
+                        Knyszyn_ForestExecutive(); 
                         break;
                 }
             }
             else if (pricePerDay <= 1000)
             {
-                switch (Option)
+                switch (value)
                 {
-                    case "Sun":AustraliaExecutive();
+                    case OptionOfTrip.Sun:
+                        AustraliaExecutive();
                         break;
-                    case "Adventure": FranceExecutive();
-                        
-                        MadagascarExecutive();
-                        AustriaExecutive();
+                    case OptionOfTrip.Adventure:
+                        FranceExecutive();
                         break;
-                    case "Adrenaline":IndiaExecutive();
-                        
-                        NepalExecutive();
-                        ;
+                    case OptionOfTrip.Adrenaline:
+                        IndiaExecutive();
                         break;
-                    case "Snow":Chile_AndyExecutive();
-                        Nepal_MountainsExecutive();
-                        ;
+                    case OptionOfTrip.Snow:
+                        Chile_AndyExecutive();
                         break;
-                    case "Lazy":Dominican_RepublicExecutive();
-                        CubaExecutive();
-                        ZanzibarExecutive();
-                        ;
+                    case OptionOfTrip.Lazy:
+                        Dominican_RepublicExecutive();
                         break;
-                    case "Survival":Amparo_IslandExecutive();
-                        ;
+                    case OptionOfTrip.Survival:
+                        Amparo_IslandExecutive();
                         break;
                 }
-
             }
             else if (pricePerDay <= 2000)
             {
-                switch (Option)
+                switch (value)
                 {
-                    case "Sun":MexicoExecutive();
+                    case OptionOfTrip.Sun:
+                        MexicoExecutive();
+                        break;
+                    case OptionOfTrip.Adventure:
+                        TanzaniaExecutive();
+                        break;
+                    case OptionOfTrip.Adrenaline:
+                        IndonesiaExecutive();
+                        break;
+                    case OptionOfTrip.Snow:
+                        SwitzerlandExecutive();
+                        break;
+                    case OptionOfTrip.Lazy:
                         HawaiiExecutive();
-                        MaldivesExecutive();
-                        
                         break;
-                    case "Adventure":TanzaniaExecutive();
-                        VietnamExecutive();
-                        
-                        break;
-                    case "Adrenaline":IndonesiaExecutive();
-                        MongoliaExecutive();
-                        SomaliaExecutive();
-                        break;
-                    case "Snow":SwitzerlandExecutive();
-                        
-                        break;
-                    case "Lazy":;
-                        
-                        break;
-                    case "Survival":Devils_IslandExecutive();
-                        Caribbean_SurvivalExecutive();
-                        
+                    case OptionOfTrip.Survival:
+                        Devils_IslandExecutive();
                         break;
                 }
-
             }
             else if (pricePerDay <= 5000)
             {
-                switch (Option)
+                switch (value)
                 {
-                    case "Sun":
-                        ;
+                    case OptionOfTrip.Sun:
+                        MaldivesExecutive();
                         break;
-                    case "Adventure":
-                        ;
+                    case OptionOfTrip.Adventure:
+                        Default();
                         break;
-                    case "Adrenaline":
-                        ;
+                    case OptionOfTrip.Adrenaline:
+                        Default();
                         break;
-                    case "Snow":
-                        ;
+                    case OptionOfTrip.Snow:
+                        Default();
                         break;
-                    case "Lazy":
-                        ;
+                    case OptionOfTrip.Lazy:
+                        ZanzibarExecutive();
                         break;
-                    case "Survival":
-                        ;
+                    case OptionOfTrip.Survival:
+                        Gambolo_IslandExecutive();
                         break;
                 }
             }
             else if (pricePerDay <= 10000)
             {
-                switch (Option)
+                switch (value)
                 {
-                    case "Sun":
-                        ;
+                    case OptionOfTrip.Sun:
+                        Default();
                         break;
-                    case "Adventure":
-                        ;
+                    case OptionOfTrip.Adventure:
+                        MadagascarExecutive();
                         break;
-                    case "Adrenaline":
-                        ;
+                    case OptionOfTrip.Adrenaline:
+                        Default();
                         break;
-                    case "Snow":
-                        ;
+                    case OptionOfTrip.Snow:
+                        Default();
                         break;
-                    case "Lazy":
-                        ;
+                    case OptionOfTrip.Lazy:
+                        Default();
                         break;
-                    case "Survival":
-                        ;
+                    case OptionOfTrip.Survival:
+                        Tazi_IslandExecutive();  
                         break;
                 }
             }
             else if (pricePerDay <= 15000)
             {
-                switch (Option)
+                switch (value)
                 {
-                    case "Sun":
-                        ;
+                    case OptionOfTrip.Sun:
+                        Default();
                         break;
-                    case "Adventure":
-                        ;
+                    case OptionOfTrip.Adventure:
+                        NepalExecutive();
                         break;
-                    case "Adrenaline":
-                        ;
+                    case OptionOfTrip.Adrenaline:
+                        Default();
                         break;
-                    case "Snow":
-                        ;
+                    case OptionOfTrip.Snow:
+                        Nepal_MountainsExecutive();
                         break;
-                    case "Lazy":
-                        ;
+                    case OptionOfTrip.Lazy:
+                        Default();
                         break;
-                    case "Survival":
-                        ;
+                    case OptionOfTrip.Survival:
+                        Default();
                         break;
                 }
             }
@@ -254,7 +259,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Włochy";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Italy.setValues() * Days;
+            OptionResult.FinalPrice = Italy.establishedPrice * Days;
             OptionResult.Entertainment = "Opalanie, zwiedzanie";
             listofoptions.Add(OptionResult);
         }
@@ -262,7 +267,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Hiszpania";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Spain.setValues() * Days;
+            OptionResult.FinalPrice = Spain.establishedPrice * Days;
             OptionResult.Entertainment = "Opalanie, Zwiedzanie";
             listofoptions.Add(OptionResult);
         }
@@ -270,7 +275,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Meksyk";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Mexico.setValues() * Days;
+            OptionResult.FinalPrice = Mexico.establishedPrice * Days;
             OptionResult.Entertainment = "Opalanie, Zwiedzanie";
             listofoptions.Add(OptionResult);
         }
@@ -278,7 +283,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Malediwy";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Maldives.setValues() * Days;
+            OptionResult.FinalPrice = Maldives.establishedPrice * Days;
             OptionResult.Entertainment = "Opalanie, Zwiedzanie";
             listofoptions.Add(OptionResult);
         }
@@ -286,7 +291,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Hawaje";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Hawaii.setValues() * Days;
+            OptionResult.FinalPrice = Hawaii.establishedPrice * Days;
             OptionResult.Entertainment = "Opalanie, Zwiedzanie";
             listofoptions.Add(OptionResult);
         }
@@ -294,7 +299,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Australia";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Australia.setValues() * Days;
+            OptionResult.FinalPrice = Australia.establishedPrice * Days;
             OptionResult.Entertainment = "Opalanie, Zwiedzanie";
             listofoptions.Add(OptionResult);
         }
@@ -302,7 +307,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Francja";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = France.setValues() * Days;
+            OptionResult.FinalPrice = France.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -310,7 +315,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Tanzania";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Tanzania.setValues() * Days;
+            OptionResult.FinalPrice = Tanzania.establishedPrice * Days;
             OptionResult.Entertainment = "Samotne zwiedzanie afrykańskiej dzungli";
             listofoptions.Add(OptionResult);
         }
@@ -318,7 +323,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Tonga";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Tonga.setValues() * Days;
+            OptionResult.FinalPrice = Tonga.establishedPrice * Days;
             OptionResult.Entertainment = "Pływanie z wielorybami";
             listofoptions.Add(OptionResult);
         }
@@ -326,7 +331,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Wietnam";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Vietnam.setValues() * Days;
+            OptionResult.FinalPrice = Vietnam.establishedPrice * Days;
             OptionResult.Entertainment = "Nurkowanie, kolarstwo górskie";
             listofoptions.Add(OptionResult);
         }
@@ -334,7 +339,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Madagaskar";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Madagascar.setValues() * Days;
+            OptionResult.FinalPrice = Madagascar.establishedPrice * Days;
             OptionResult.Entertainment = "Oglądanie rafy koralowej";
             listofoptions.Add(OptionResult);
         }
@@ -342,7 +347,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Austria";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Austria.setValues() * Days;
+            OptionResult.FinalPrice = Austria.establishedPrice * Days;
             OptionResult.Entertainment = "Wspinaczka, kolarstwo górskie";
             listofoptions.Add(OptionResult);
         }
@@ -350,7 +355,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Indie";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = India.setValues() * Days;
+            OptionResult.FinalPrice = India.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -358,7 +363,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Mongolia";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Mongolia.setValues() * Days;
+            OptionResult.FinalPrice = Mongolia.establishedPrice * Days;
             OptionResult.Entertainment = "Rajd motocyklowy po pustyni Gobi";
             listofoptions.Add(OptionResult);
         }
@@ -366,7 +371,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Indonezja";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Indonesia.setValues() * Days;
+            OptionResult.FinalPrice = Indonesia.establishedPrice * Days;
             OptionResult.Entertainment = "Spływy kajakowe";
             listofoptions.Add(OptionResult);
         }
@@ -374,7 +379,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Nepal";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Nepal.setValues() * Days;
+            OptionResult.FinalPrice = Nepal.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -382,7 +387,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Somalia";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Somalia.setValues() * Days;
+            OptionResult.FinalPrice = Somalia.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -390,7 +395,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Chile";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Chile.setValues() * Days;
+            OptionResult.FinalPrice = Chile.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -398,7 +403,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Włochy - Val di Sole";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Italy_ValDiSole.setValues() * Days;
+            OptionResult.FinalPrice = Italy_ValDiSole.establishedPrice * Days;
             OptionResult.Entertainment = "Narciarstwo";
             listofoptions.Add(OptionResult);
         }
@@ -406,7 +411,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Szwajcaria";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Switzerland.setValues() * Days;
+            OptionResult.FinalPrice = Switzerland.establishedPrice * Days;
             OptionResult.Entertainment = "Maraton narciarski";
             listofoptions.Add(OptionResult);
         }
@@ -414,7 +419,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Chile - Andy";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Chile_Andy.setValues() * Days;
+            OptionResult.FinalPrice = Chile_Andy.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -422,7 +427,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Antarktyda";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Antarctica.setValues() * Days;
+            OptionResult.FinalPrice = Antarctica.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -430,7 +435,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Nepal - Góry";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Nepal_Mountains.setValues() * Days;
+            OptionResult.FinalPrice = Nepal_Mountains.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -438,7 +443,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Kilimandżaro";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Kilimanjaro.setValues() * Days;
+            OptionResult.FinalPrice = Kilimanjaro.establishedPrice * Days;
             OptionResult.Entertainment = "Wspinaczka";
             listofoptions.Add(OptionResult);
         }
@@ -446,7 +451,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Chorwacja";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Croatia.setValues() * Days;
+            OptionResult.FinalPrice = Croatia.establishedPrice * Days;
             OptionResult.Entertainment = "Piękne widoki";
             listofoptions.Add(OptionResult);
         }
@@ -454,7 +459,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Maroko";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Morocco.setValues() * Days;
+            OptionResult.FinalPrice = Morocco.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -462,7 +467,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Portugalia - Madera";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Portugal_Madera.setValues() * Days;
+            OptionResult.FinalPrice = Portugal_Madera.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -470,7 +475,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Dominikana";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Dominican_Republic.setValues() * Days;
+            OptionResult.FinalPrice = Dominican_Republic.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -478,7 +483,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Kuba";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Cuba.setValues() * Days;
+            OptionResult.FinalPrice = Cuba.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -486,7 +491,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Zanzibar";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Zanzibar.setValues() * Days;
+            OptionResult.FinalPrice = Zanzibar.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -494,7 +499,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Puszcza Knyszyńska";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Knyszyn_Forest.setValues() * Days;
+            OptionResult.FinalPrice = Knyszyn_Forest.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -502,7 +507,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Wyspa Tazi";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Tazi_Island.setValues() * Days;
+            OptionResult.FinalPrice = Tazi_Island.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -510,7 +515,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Wyspa Gambolo";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Gambolo_Island.setValues() * Days;
+            OptionResult.FinalPrice = Gambolo_Island.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -518,7 +523,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Wyspa Amparo";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Amparo_Island.setValues() * Days;
+            OptionResult.FinalPrice = Amparo_Island.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -526,7 +531,7 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Diabelska Wyspa";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Devils_Island.setValues() * Days;
+            OptionResult.FinalPrice = Devils_Island.establishedPrice * Days;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
@@ -534,7 +539,15 @@ namespace AkademiaProjektZaliczenie
         {
             OptionResult.Place = "Karaiby";
             OptionResult.SelectedOption = Option;
-            OptionResult.FinalPrice = Caribbean_Survival.setValues() * Days;
+            OptionResult.FinalPrice = Caribbean_Survival.establishedPrice * Days;
+            OptionResult.Entertainment = "";
+            listofoptions.Add(OptionResult);
+        }
+        private void Default()
+        {
+            OptionResult.Place = "Brak pasujących ofert";
+            OptionResult.SelectedOption = "";
+            OptionResult.FinalPrice = 0;
             OptionResult.Entertainment = "";
             listofoptions.Add(OptionResult);
         }
